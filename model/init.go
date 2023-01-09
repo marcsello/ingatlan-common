@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func initDB(dsn string, lgr logger.Writer) (*gorm.DB, error) {
+func InitDB(dsn string, lgr logger.Writer) (*gorm.DB, error) {
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
 		Logger: logger.New(
 			lgr,
