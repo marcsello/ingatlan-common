@@ -1,6 +1,0 @@
-package vals
-
-const (
-	SCRAPER_SOURCE_INGATLAN_COM = "ING"
-	SCRAPER_SOURCE_JOFOGAS_HU   = "JOF"
-)
