@@ -6,41 +6,41 @@ import (
 )
 
 type OldPrice struct {
-	ID uint `gorm:"primarykey"`
+	ID uint `json:"id" gorm:"primarykey"`
 
-	AlbiID     uint
-	AlbiSource string `gorm:"type:varchar(3)"`
-	Timestamp  time.Time
-	Price      sql.NullInt64
+	AlbiID     uint          `json:"albi_id"`
+	AlbiSource string        `json:"albi_src" gorm:"type:varchar(3)"`
+	Timestamp  time.Time     `json:"ts"`
+	Price      sql.NullInt64 `json:"price"`
 
-	Albi *Albi `gorm:"belongsTo:Albi"`
+	Albi *Albi `json:"albi" gorm:"belongsTo:Albi"`
 }
 
 type Albi struct {
-	ID           uint        `gorm:"primarykey"`
-	Source       string      `gorm:"type:varchar(3);primarykey"`
-	CreatedAt    time.Time   `gorm:"default:now()"`
-	LastSeen     time.Time   `gorm:"default:now()"`
-	PriceHistory []*OldPrice `gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
+	ID           uint        `json:"id" gorm:"primarykey"`
+	Source       string      `json:"src" gorm:"type:varchar(3);primarykey"`
+	CreatedAt    time.Time   `json:"created_at" gorm:"default:now()"`
+	LastSeen     time.Time   `json:"last_seen" gorm:"default:now()"`
+	PriceHistory []*OldPrice `json:"price_history" gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 
-	Price        sql.NullInt64
-	Addr         string `gorm:"type:varchar(200)"`
-	Size         string `gorm:"type:varchar(100)"`
-	Rooms        string `gorm:"type:varchar(100)"`
-	URL          string `gorm:"type:varchar(255)"`
-	ThumbnailURL string `gorm:"type:varchar(255)"`
+	Price        sql.NullInt64 `json:"price"`
+	Addr         string        `json:"addr" gorm:"type:varchar(200)"`
+	Size         string        `json:"size" gorm:"type:varchar(100)"`
+	Rooms        string        `json:"rooms" gorm:"type:varchar(100)"`
+	URL          string        `json:"url" gorm:"type:varchar(255)"`
+	ThumbnailURL string        `json:"thumbnail_url" gorm:"type:varchar(255)"`
 
-	Originator []*SearchQuery `gorm:"many2many:query_albis;"`
+	Originator []*SearchQuery `json:"originators" gorm:"many2many:query_albis;"`
 }
 
 type SearchQuery struct {
-	ID           uint      `gorm:"primarykey,unique"`
-	Source       string    `gorm:"type:varchar(3)"`
-	CreatedAt    time.Time `gorm:"default:now()"`
-	LastExecuted time.Time
+	ID           uint      `json:"id" gorm:"primarykey,unique"`
+	Source       string    `json:"src" gorm:"type:varchar(3)"`
+	CreatedAt    time.Time `json:"created_at" gorm:"default:now()"`
+	LastExecuted time.Time `json:"last_executed"`
 
-	Note  string `gorm:"type:varchar(2048)"`
-	Query string `gorm:"type:varchar(2048)"`
+	Note  string `json:"note" gorm:"type:varchar(2048)"`
+	Query string `json:"query" gorm:"type:varchar(2048)"`
 
-	Albis []*Albi `gorm:"many2many:query_albis;"`
+	Hits []*Albi `json:"hits" gorm:"many2many:query_albis;"`
 }
