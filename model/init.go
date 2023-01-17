@@ -24,7 +24,7 @@ func InitDB(dsn string, lgr logger.Writer) (*gorm.DB, error) {
 		return nil, err
 	}
 
-	err = db.AutoMigrate(&Albi{}, &OldPrice{}, &SearchQuery{})
+	err = db.AutoMigrate(&Albi{}, &OldPrice{}, &SearchQuery{}, &User{})
 	if err != nil {
 		return nil, err
 	}
