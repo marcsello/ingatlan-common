@@ -47,10 +47,9 @@ type SearchQuery struct {
 
 type User struct {
 	// All these data are received from Telegram
-	ID        uint64    `json:"id" gorm:"primarykey"`
-	FirstName string    `json:"first_name"`
-	LastName  string    `json:"last_name"`
-	Username  string    `json:"username"`
-	PhotoUrl  string    `json:"photo_url"`
-	AuthDate  time.Time `json:"auth_date"`
+	ID        uint64 `json:"id" gorm:"primarykey"`
+	FirstName string `json:"first_name"`
+	LastName  string `json:"last_name"`
+	Username  string `json:"username"`
+	PhotoUrl  string `json:"photo_url"`
 }

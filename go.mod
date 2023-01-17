@@ -1,5 +1,7 @@
 module github.com/marcsello/ingatlan-common
 
+replace github.com/marcsello/ingatlan-common => ./
+
 go 1.19
 
 require (
