@@ -52,4 +52,7 @@ type User struct {
 	LastName  string `json:"last_name"`
 	Username  string `json:"username"`
 	PhotoUrl  string `json:"photo_url"`
+	// Those are needs to be boolean, otherwise goorm won't update them: https://stackoverflow.com/questions/56653423/gorm-doesnt-update-boolean-field-to-false
+	Active	  *bool  `json:"active" gorm:"default:false"`
+	Admin	  *bool  `json:"admin" gorm:"default:false"`
 }
