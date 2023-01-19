@@ -48,11 +48,11 @@ type SearchQuery struct {
 type User struct {
 	// All these data are received from Telegram
 	ID        uint64 `json:"id" gorm:"primarykey"`
-	FirstName string `json:"first_name"`
-	LastName  string `json:"last_name"`
-	Username  string `json:"username"`
-	PhotoUrl  string `json:"photo_url"`
-	// Those are needs to be boolean, otherwise goorm won't update them: https://stackoverflow.com/questions/56653423/gorm-doesnt-update-boolean-field-to-false
-	Active	  *bool  `json:"active" gorm:"default:false"`
-	Admin	  *bool  `json:"admin" gorm:"default:false"`
+	FirstName string `json:"first_name" gorm:"type:varchar(64)"` // https://limits.tginfo.me/en
+	LastName  string `json:"last_name" gorm:"type:varchar(64)"`
+	Username  string `json:"username" gorm:"type:varchar(32)"` //https://core.telegram.org/method/account.checkUsername
+	PhotoUrl  string `json:"photo_url" gorm:"type:varchar(128)"`
+	// Those are needs to be *boolean, otherwise gorm won't update them: https://stackoverflow.com/questions/56653423/gorm-doesnt-update-boolean-field-to-false
+	Active *bool `json:"active" gorm:"default:false"`
+	Admin  *bool `json:"admin" gorm:"default:false"`
 }
