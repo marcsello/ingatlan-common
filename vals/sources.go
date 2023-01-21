@@ -5,7 +5,7 @@ const ( // naming convention roughly: <service><type><name>
 	ScraperSourceJofogasHu   = "JOF"
 )
 
-func isScraperSourceValid(src string) bool {
+func IsScraperSourceValid(src string) bool {
 	switch src {
 	case ScraperSourceIngatlanCom:
 	case ScraperSourceJofogasHu:
@@ -14,11 +14,11 @@ func isScraperSourceValid(src string) bool {
 	return false
 }
 
-func getValidSources() []string {
+func GetValidSources() []string {
 	return []string{ScraperSourceIngatlanCom, ScraperSourceJofogasHu}
 }
 
-func getValidSourcesWithUrlBase() map[string]string {
+func GetValidSourcesWithUrlBase() map[string]string {
 	return map[string]string{
 		ScraperSourceIngatlanCom: "https://ingatlan.com/",
 		ScraperSourceJofogasHu:   "https://ingatlan.jofogas.hu/",
