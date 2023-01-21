@@ -42,7 +42,7 @@ type SearchQuery struct {
 	Note  string `json:"note" gorm:"type:varchar(2048)"`
 	Query string `json:"query" gorm:"type:varchar(2048)"`
 
-	Hits []*Albi `json:"hits" gorm:"many2many:query_albis;"`
+	Hits []*Albi `json:"hits,omitempty" gorm:"many2many:query_albis;"`
 }
 
 type User struct {
