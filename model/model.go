@@ -1,7 +1,6 @@
 package model
 
 import (
-	"database/sql"
 	"time"
 )
 
@@ -11,7 +10,7 @@ type OldPrice struct {
 	AlbiID     uint          `json:"albi_id"`
 	AlbiSource string        `json:"albi_src" gorm:"type:varchar(3)"`
 	Timestamp  time.Time     `json:"ts"`
-	Price      sql.NullInt64 `json:"price"`
+	Price      JsonNullInt64 `json:"price"`
 
 	Albi *Albi `json:"albi" gorm:"belongsTo:Albi"`
 }
@@ -23,7 +22,7 @@ type Albi struct {
 	LastSeen     time.Time   `json:"last_seen" gorm:"default:now()"`
 	PriceHistory []*OldPrice `json:"price_history" gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 
-	Price        sql.NullInt64 `json:"price"`
+	Price        JsonNullInt64 `json:"price"`
 	Addr         string        `json:"addr" gorm:"type:varchar(200)"`
 	Size         string        `json:"size" gorm:"type:varchar(100)"`
 	Rooms        string        `json:"rooms" gorm:"type:varchar(100)"`
@@ -32,7 +31,7 @@ type Albi struct {
 
 	Ignored *bool `json:"ignored" gorm:"default:false"`
 
-	Originator []*SearchQuery `json:"originators" gorm:"many2many:query_albis;"`
+	Originators []*SearchQuery `json:"originators,omitempty" gorm:"many2many:query_albis;"`
 }
 
 type SearchQuery struct {
