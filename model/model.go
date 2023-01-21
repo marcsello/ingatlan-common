@@ -30,6 +30,8 @@ type Albi struct {
 	URL          string        `json:"url" gorm:"type:varchar(255)"`
 	ThumbnailURL string        `json:"thumbnail_url" gorm:"type:varchar(255)"`
 
+	Ignored *bool `json:"ignored" gorm:"default:false"`
+
 	Originator []*SearchQuery `json:"originators" gorm:"many2many:query_albis;"`
 }
 
