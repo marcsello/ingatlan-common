@@ -8,10 +8,10 @@ import (
 type OldPrice struct {
 	ID uint `json:"id" gorm:"primarykey"`
 
-	AlbiID     uint          `json:"albi_id"`
-	AlbiSource string        `json:"albi_src" gorm:"type:varchar(3)"`
-	Timestamp  time.Time     `json:"ts"`
-	Price      JsonNullInt64 `json:"price"`
+	AlbiID     uint      `json:"albi_id"`
+	AlbiSource string    `json:"albi_src" gorm:"type:varchar(3)"`
+	Timestamp  time.Time `json:"ts"`
+	Price      null.Int  `json:"price"`
 
 	Albi *Albi `json:"albi" gorm:"belongsTo:Albi"`
 }
@@ -23,12 +23,12 @@ type Albi struct {
 	LastSeen     time.Time   `json:"last_seen" gorm:"default:now()"`
 	PriceHistory []*OldPrice `json:"price_history" gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 
-	Price        JsonNullInt64 `json:"price"`
-	Addr         string        `json:"addr" gorm:"type:varchar(200)"`
-	Size         string        `json:"size" gorm:"type:varchar(100)"`
-	Rooms        string        `json:"rooms" gorm:"type:varchar(100)"`
-	URL          string        `json:"url" gorm:"type:varchar(255)"`
-	ThumbnailURL null.String   `json:"thumbnail_url" gorm:"type:varchar(255)"`
+	Price        null.Int    `json:"price"`
+	Addr         string      `json:"addr" gorm:"type:varchar(200)"`
+	Size         string      `json:"size" gorm:"type:varchar(100)"`
+	Rooms        string      `json:"rooms" gorm:"type:varchar(100)"`
+	URL          string      `json:"url" gorm:"type:varchar(255)"`
+	ThumbnailURL null.String `json:"thumbnail_url" gorm:"type:varchar(255)"`
 
 	Ignored *bool `json:"ignored" gorm:"default:false"`
 
