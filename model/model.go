@@ -2,6 +2,7 @@ package model
 
 import (
 	"gopkg.in/guregu/null.v4"
+	"strings"
 	"time"
 )
 
@@ -57,4 +58,26 @@ type User struct {
 	// Those are needs to be *boolean, otherwise gorm won't update them: https://stackoverflow.com/questions/56653423/gorm-doesnt-update-boolean-field-to-false
 	Active *bool `json:"active" gorm:"default:false"`
 	Admin  *bool `json:"admin" gorm:"default:false"`
+}
+
+func (u *User) IsActive() bool {
+	return u.Active != nil && *u.Active
+}
+
+func (u *User) IsAdmin() bool {
+	return u.Admin != nil && *u.Admin
+}
+
+func (u *User) Greet() string {
+	name := u.FirstName // first name must be always present
+	if u.LastName != "" {
+		name += " " + u.LastName
+	}
+
+	if strings.TrimSpace(name) == "" {
+		return "@" + u.Username
+	} else {
+		return name
+	}
+	
 }
