@@ -36,6 +36,10 @@ type Albi struct {
 	Originators []*SearchQuery `json:"originators,omitempty" gorm:"many2many:query_albis;"`
 }
 
+func (a *Albi) IsIgnored() bool {
+	return a.Ignored != nil && *a.Ignored
+}
+
 type SearchQuery struct {
 	ID           uint      `json:"id" gorm:"primarykey,unique"`
 	Source       string    `json:"src" gorm:"type:varchar(3)"`
@@ -79,5 +83,5 @@ func (u *User) Greet() string {
 	} else {
 		return name
 	}
-	
+
 }
