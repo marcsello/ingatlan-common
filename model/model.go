@@ -49,7 +49,7 @@ type SearchQuery struct {
 
 type User struct {
 	// All these data are received from Telegram
-	ID        uint64 `json:"id" gorm:"primarykey"`
+	ID        int64  `json:"id" gorm:"primarykey"`               // This must be a signed int, because telegram assign negative id to groups
 	FirstName string `json:"first_name" gorm:"type:varchar(64)"` // https://limits.tginfo.me/en
 	LastName  string `json:"last_name" gorm:"type:varchar(64)"`
 	Username  string `json:"username" gorm:"type:varchar(32)"` //https://core.telegram.org/method/account.checkUsername
