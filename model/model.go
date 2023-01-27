@@ -1,6 +1,7 @@
 package model
 
 import (
+	"gopkg.in/guregu/null.v4"
 	"time"
 )
 
@@ -27,7 +28,7 @@ type Albi struct {
 	Size         string        `json:"size" gorm:"type:varchar(100)"`
 	Rooms        string        `json:"rooms" gorm:"type:varchar(100)"`
 	URL          string        `json:"url" gorm:"type:varchar(255)"`
-	ThumbnailURL string        `json:"thumbnail_url" gorm:"type:varchar(255)"`
+	ThumbnailURL null.String   `json:"thumbnail_url" gorm:"type:varchar(255)"`
 
 	Ignored *bool `json:"ignored" gorm:"default:false"`
 

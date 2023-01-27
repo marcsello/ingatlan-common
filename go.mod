@@ -6,6 +6,7 @@ go 1.19
 
 require (
 	github.com/lthibault/jitterbug/v2 v2.2.2
+	gopkg.in/guregu/null.v4 v4.0.0
 	gorm.io/driver/postgres v1.4.6
 	gorm.io/gorm v1.24.3
 )
