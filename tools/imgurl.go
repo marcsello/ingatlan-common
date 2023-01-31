@@ -24,6 +24,6 @@ func IsValidImageUrl(url string) bool {
 	}
 
 	mimeType := http.DetectContentType(body)
-	mimeLeft := strings.Split(mimeType, "/")[0]
+	mimeLeft := strings.Split(mimeType, "/")[0] // 0th element is always valid, it's the string itself
 	return mimeLeft == "image"
 }

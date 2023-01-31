@@ -27,7 +27,7 @@ func NewTicker() (<-chan time.Time, func()) {
 
 	stopFunc := func() {
 		t.Stop() // as many things, jitterbug is a little stupid, and stopping it would cause it to wait until the next tick to actually stop.
-		// Good thing, golang (as of 1.19) just throws away all goroutines when the main thread exits, so we don't really have to worry about that
+		// Good thing, golang (at least for 1.19) just throws away all goroutines when the main thread exits, so we don't really have to worry about that
 		close(c)
 	}
 

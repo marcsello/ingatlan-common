@@ -24,3 +24,10 @@ func GetValidSourcesWithUrlBase() map[string]string {
 		ScraperSourceJofogasHu:   "https://ingatlan.jofogas.hu/",
 	}
 }
+
+func GetValidSourcesWithFriendlyNames() map[string]string {
+	return map[string]string{
+		ScraperSourceIngatlanCom: "ingatlan.com",
+		ScraperSourceJofogasHu:   "Jófogás",
+	}
+}
