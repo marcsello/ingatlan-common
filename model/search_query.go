@@ -1,6 +1,7 @@
 package model
 
 import (
+	"gopkg.in/guregu/null.v4"
 	"time"
 )
 
@@ -8,7 +9,7 @@ type SearchQuery struct {
 	ID           uint      `json:"id" gorm:"primarykey,unique"`
 	Source       string    `json:"src" gorm:"type:varchar(3)"`
 	CreatedAt    time.Time `json:"created_at" gorm:"default:now()"`
-	LastExecuted time.Time `json:"last_executed"`
+	LastExecuted null.Time `json:"last_executed"`
 
 	// Freetext for simpler identifying of the query
 	Note string `json:"note" gorm:"type:varchar(2048)"`
@@ -31,5 +32,10 @@ func (sq *SearchQuery) IsSilent() bool {
 
 // IsReady in other words, is cooldown expired
 func (sq *SearchQuery) IsReady(currentTime time.Time) bool {
-	return sq.LastExecuted.Add(time.Duration(sq.Cooldown) * time.Second).Before(currentTime)
+
+	if !sq.LastExecuted.Valid {
+		return true
+	}
+
+	return sq.LastExecuted.Time.Add(time.Duration(sq.Cooldown) * time.Second).Before(currentTime)
 }
