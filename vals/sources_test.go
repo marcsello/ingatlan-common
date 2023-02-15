@@ -15,47 +15,47 @@ func TestIsScraperSourceValid(t *testing.T) {
 
 	testCases := []testCase{
 		{
-			name:     "hard-coded JOF",
+			name:     "hard-coded_JOF",
 			val:      "JOF",
 			expected: true,
 		},
 		{
-			name:     "hard-coded ING",
+			name:     "hard-coded_ING",
 			val:      "ING",
 			expected: true,
 		},
 		{
-			name:     "constant JOF",
+			name:     "constant_JOF",
 			val:      ScraperSourceJofogasHu,
 			expected: true,
 		},
 		{
-			name:     "constant ING",
+			name:     "constant_ING",
 			val:      ScraperSourceIngatlanCom,
 			expected: true,
 		},
 		{
-			name:     "lowercase ing",
+			name:     "lowercase_ing",
 			val:      "ing",
 			expected: false,
 		},
 		{
-			name:     "lowercase jof",
+			name:     "lowercase_jof",
 			val:      "jof",
 			expected: false,
 		},
 		{
-			name:     "random 1",
+			name:     "random_1",
 			val:      "asd",
 			expected: false,
 		},
 		{
-			name:     "random 2",
+			name:     "random_2",
 			val:      "ASD",
 			expected: false,
 		},
 		{
-			name:     "empty string",
+			name:     "empty_string",
 			val:      "",
 			expected: false,
 		},

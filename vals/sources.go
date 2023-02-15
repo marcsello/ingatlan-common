@@ -8,6 +8,7 @@ const ( // naming convention roughly: <service><type><name>
 func IsScraperSourceValid(src string) bool {
 	switch src {
 	case ScraperSourceIngatlanCom:
+		fallthrough
 	case ScraperSourceJofogasHu:
 		return true
 	}
