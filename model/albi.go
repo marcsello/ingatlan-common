@@ -14,7 +14,7 @@ type OldPrice struct {
 	Timestamp  time.Time `json:"ts"`
 	Price      null.Int  `json:"price"`
 
-	Albi *Albi `json:"albi" gorm:"belongsTo:Albi"`
+	Albi *Albi `json:"albi,omitempty" gorm:"belongsTo:Albi"`
 }
 
 type Albi struct {
